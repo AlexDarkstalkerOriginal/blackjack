@@ -1,289 +1,131 @@
-body {
-	background: #303030;
-	padding: 0;
-	margin: 0;	
-}
+<!DOCTYPE html>
 
-body, input, button {
-	font-family: 'Roboto', sans-serif;
-}
+<html lang="en">
 
-input:focus, button:focus, a:focus {
-	outline: unset;
-}
 
-img {
-	margin: 0;
-	padding: 0;
-	line-height: 1;
-}
 
-.dealer .cards .card {
-	width: 55px;
-	height: 80px;	
-}
+<head>
 
-.cards {
-	transition: .5s;
-	height: 80px;
-}
+	<meta charset="UTF-8">
 
-.card {
-	animation: animateElement linear .5s;
-}
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-@keyframes animateElement{
-  0% {
-    opacity:0;
-    transform:  translate(0px, -1000px);
-  }
-  100% {
-    opacity:1;
-    transform:  translate(0px, 0px);
-  }
-}
+	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta http-equiv="Expires" content="Mon, 26 Jul 1997 05:00:00 GMT">
+	<meta http-equiv="Pragma" content="no-cache">
+	<title>BlackJack</title>	
+</head>    
 
-.player .cards .card{
-	width: 70px;
-	height: 100px;	
-}	 
 
-.cards .card {
-	display: inline-block;
-	background-size: cover;
-}
 
-.wrapper {
-	width: 1100px;
-	position: relative;
-	margin: 50px auto 0 auto; 
-}
+<body>	
+<div id="app">		
+	<div  class="wrapper">
+		<img src="img/fg-border-max.png" class="table" alt="">
+		<img src="img/border.png" class="border_table" alt="">
+		<img src="img/logo.png" alt="" class="logo">		
+		<div class="dealer">
+			<div class="cards">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
 
-.table {
-	position: absolute;
-	width: 850px;
-	top: 15px;
-	left: -50px;
-	z-index: -1;
-}
+				<div class="points">{{ dealer_result }}</div>
+			</div>
+		</div>
+		<div class="result">
+			<div v-show="win" class="win">赢得</div>
+			<div v-show="lose" class="lose">失去</div>
+			<div v-show="draw" class="draw">画</div>
+		</div>
+		<div class="player">
+			<div class="cards">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				
 
-.player {
-	margin: 140px auto 0 auto;	
-	padding-right: 350px;
-	position: relative;
-	text-align: center;
-}
+				<div class="points">{{player_result}}</div>
+			</div>
+		</div>
+		<div class="nav_buttons">
+			<div class="current_bet">目前下注: <span>{{current}}</span></div>
+			
+			<button v-bind:class="{ disabled: disabled_double}" v-bind:disabled="disabled_double" v-on:click="double(current)" class="double">双下</button> 
 
-.dealer {
-	margin: 0 auto;
-	position: relative;	
-	padding-top: 50px;
-	padding-bottom: 20px;
-	padding-right: 350px;
-	text-align: center;
-}
-
-.nav_buttons {
-	width: 410px;	
-	margin: 80px auto 0 auto; 	
-	padding-right: 350px;
-}
-
-.nav_buttons button {	
-	border: none;
-	color: #fff;
-	transition: .4s;	
-	width: 120px;
-	height: 40px;	
-	border-radius: 2px;
-	cursor: pointer;
-	box-shadow: 2px 2px 7px rgba(0, 0, 0, .4)
-	font-size: 18px;
-	background: #296391;
-	margin-right: 20px;
-}
-
-.nav_buttons button:last-child {
-	margin-right: 0;
-}
-
-.nav_buttons button:hover {
-	background: #75a7ce;
-}
-
-.points {
-	position: absolute;	
-	background: #303030;		
-	color: #fff;
-	box-shadow: 2px 2px 10px #000;
-	border-radius: 20px;	
-	line-height: 1;	
-	font-size: 16px;	
-	padding: 12px 0;
-}
-.player .points {
-	width: 164px;
-	left: 295px;
-	bottom: -50px;
-}
-
-.dealer .points {
-	width: 134px;
-	left: 310px;
-	bottom: -10px;
-}
-
-.new_game {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	width: 210px;
-}
-
-.new_game h2 {
-	color: #fff;
-	text-align: center;
-	margin: 0;
-	padding: 0;
-	margin-bottom: 30px;
-}
-
-.new_game .bet {
-	border: none;
-	border-radius: 2px;
-	background: rgba(255, 255, 255, .6);
-	cursor: pointer;
-	width: 60px;
-	font-size: 16px;
-	padding: 8px 0;
-	margin-right: 5px;
-	transition: .4s;
-}
-
-.new_game .bet:hover {	
-	background: rgba(255, 255, 255, 1);
-}
-
-.new_game .active_bet {
-	background: rgba(255, 255, 255, 1);	
-}
-
-.tooltip {
-	display: block;
-	color: #fff;
-	opacity: .6;
-	font-size: 14px;
-	text-align: center;
-	padding: 3px 0 20px 0;
-}
-
-.play {	
-	padding: 8px 0;
-	display: block;
-	margin: 0 auto;
-	box-shadow: 2px 2px 7px rgba(0, 0, 0, .4)
-	font-size: 18px;
-	background: #296391;
-	color: #fff;
-	border: none;
-	border-radius: 2px;
-	transition: .4s;	
-	width: 120px;
-	height: 40px;	
-	cursor: pointer;
-}
-
-.play:hover {
-	background: #75a7ce;
-}
-
-.current_bet {
-	display: block;
-	text-align: center;
-	padding-bottom: 20px;
-	color: #fff;
-}
-
-.result {
-	position: absolute;
-	font-size: 40px;	
-	color: #fff;
-	top: 200px;
-}
-
-.win, .lose, .draw {
-	position: absolute;	
-}
-
-.win {
-	color: green;
-	left: 340px;	
-}
-
-.lose {
-	color: red;
-	left: 330px;	
-}
-
-.draw {
-	color: yellow;
-	left: 330px;	
-}
-
-.disabled {
-	opacity: .3;
-}
-
-.empty {
-	display: none !important;
-}
-
-.rules {
-	position: absolute;
-	top: 0;
-	right: 0;	
-}
-
-.rules a {
-	color: #fff;
-	text-decoration: none;
-	margin-right: 20px;	
-}
-
-#rules, #contact {
-	background: #fff;
-	width: 1100px;
-	margin: 0 auto;
-	padding: 30px 100px;
-	position: relative;
-}
-
-#rules, #contact h1 {
-	margin-bottom: 30px;
-}
-
-.border_table {
-	position: absolute;
-    width: 900px;
-    margin-left: -70px;
-    margin-top: 30px;
-    height: 420px;
-}
-.logo {
-	width: 130px;
-	position: absolute;
-	top: -10px;
-	left: -100px;
-}
-
-.noExtension, .errNetwork {
-	height: 100vh;
-	position: absolute;
-	font-size: 30px;
-	padding: 100px;
-	z-index: 10;
-	background: rgba(255,255,255,.8);	
-	width: 100vw;
-	top: 0;
-	left: 0;
-}
+			<button v-bind:disabled="disabled_stand" v-bind:class="{ disabled: disabled_stand}" v-on:click="stand()" class="stand">站</button> 
+			
+			<button v-bind:disabled="disabled_hit" v-bind:class="{ disabled: disabled_hit}" v-on:click="hit()" class="hit">击中</button>
+		</div>
+		<div class="new_game">
+			<h2>玩新游戏</h2>
+			<div class="bets_block">				
+				<button class="bet active_bet" value="0">0</button>
+				<button class="bet" value="0.01">0.01</button>
+				<button class="bet" value="0.05">0.05</button>			
+				<span class="tooltip">你的赌注</span>
+			</div>	
+			<button v-on:click="play()" class="play">玩</button>	
+		</div>
+		<div class="rules">
+			<a href="en.html" style="color: red">EN</a>
+			<a href="#contact" class="popup">联系我们</a>
+			<a href="#rules" class="popup">规则</a>
+		</div>
+		<div id="rules" class="mfp-hide mfp-fade">
+			<h1>规则</h1>
+			<p>
+				<b>包裹</b> <br>
+				使用标准的52卡包。
+				<br><br>
+				<b>游戏的目标</b>
+				<br>
+				每位参与者都试图通过尽可能接近21的计数来击败经销商，而不会超过21<br><br>
+				<b>卡片价值/评分</b>< br>
+				面牌是10，Ace是11，其他牌是它的点值 <br><br>
+				<b>双击</b>
+				玩家被允许增加最初的赌注高达100％，以换取承诺在收到正好一张卡之后的立场
+			</p>
+		</div>
+		<div id="contact" class="mfp-hide mfp-fade">
+			<h1>联系我们</h1>
+			<a href="mailto:alexdarkstalkeroriginal@gmail.com">alexdarkstalkeroriginal@gmail.com</a>
+		</div>
+	</div>
+			
+</div>
+<div class="noExtension" style="display: none"> 
+		注意：请安装 <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>  使用21点星云或尝试CTRL + F5
+</div>
+<div class="errNetwork" style="display: none">
+	注意：对不起，您使用不正确的网络
+</div>	
+	<script src='lib/jquery-3.3.1.min.js'></script>
+	<link rel="stylesheet" href="lib/main.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
+    <script src='lib/nebPay.js'></script>    	
+    <script src="lib/common.js"></script>
+    <script src='lib/jquery.magnific-popup.js'></script> 	
+    <link rel="stylesheet" href="lib/magnific-popup.css">    
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">    
+    <script>
+	    $('.popup').magnificPopup({
+			type:'inline',
+			fixedContentPos: true, 
+			mainClass: 'mfp-fade',      
+			showCloseBtn: true,
+			closeOnBgClick: true
+		});		
+	</script>
+</body>
+</html>
