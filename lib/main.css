@@ -269,3 +269,9 @@ img {
     margin-top: 30px;
     height: 420px;
 }
+.logo {
+	width: 60px;
+	position: absolute;
+	top: -20px;
+	left: -100px;
+}
