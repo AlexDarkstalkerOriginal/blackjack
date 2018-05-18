@@ -1,0 +1,270 @@
+body {
+	background: #303030;
+	padding: 0;
+	margin: 0;	
+}
+
+body, input, button {
+	font-family: 'Roboto', sans-serif;
+}
+
+input:focus, button:focus, a:focus {
+	outline: unset;
+}
+
+img {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+}
+
+.dealer .cards .card {
+	width: 55px;
+	height: 80px;	
+}
+
+.cards {
+	transition: .5s;
+}
+
+.card {
+	animation: animateElement linear .5s;
+}
+
+@keyframes animateElement{
+  0% {
+    opacity:0;
+    transform:  translate(0px, -1000px);
+  }
+  100% {
+    opacity:1;
+    transform:  translate(0px, 0px);
+  }
+}
+
+.player .cards .card{
+	width: 70px;
+	height: 100px;	
+}	 
+
+.cards .card {
+	display: inline-block;
+	background-size: cover;
+}
+
+.wrapper {
+	width: 1100px;
+	position: relative;
+	margin: 50px auto 0 auto; 
+}
+
+.table {
+	position: absolute;
+	width: 850px;
+	top: 15px;
+	left: -50px;
+	z-index: -1;
+}
+
+.player {
+	margin: 140px auto 0 auto;	
+	padding-right: 350px;
+	position: relative;
+	text-align: center;
+}
+
+.dealer {
+	margin: 0 auto;
+	position: relative;	
+	padding-top: 50px;
+	padding-bottom: 20px;
+	padding-right: 350px;
+	text-align: center;
+}
+
+.nav_buttons {
+	width: 410px;	
+	margin: 80px auto 0 auto; 	
+	padding-right: 350px;
+}
+
+.nav_buttons button {	
+	border: none;
+	color: #fff;
+	transition: .4s;	
+	width: 120px;
+	height: 40px;	
+	border-radius: 2px;
+	cursor: pointer;
+	box-shadow: 2px 2px 7px rgba(0, 0, 0, .4)
+	font-size: 18px;
+	background: #296391;
+	margin-right: 20px;
+}
+
+.nav_buttons button:last-child {
+	margin-right: 0;
+}
+
+.nav_buttons button:hover {
+	background: #75a7ce;
+}
+
+.points {
+	position: absolute;	
+	background: #303030;		
+	color: #fff;
+	box-shadow: 2px 2px 10px #000;
+	border-radius: 20px;	
+	line-height: 1;	
+	font-size: 16px;	
+	padding: 12px 0;
+}
+.player .points {
+	width: 164px;
+	left: 295px;
+	bottom: -30px;
+}
+
+.dealer .points {
+	width: 134px;
+	left: 310px;
+	bottom: -10px;
+}
+
+.new_game {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 210px;
+}
+
+.new_game h2 {
+	color: #fff;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 30px;
+}
+
+.new_game .bet {
+	border: none;
+	border-radius: 2px;
+	background: rgba(255, 255, 255, .6);
+	cursor: pointer;
+	width: 60px;
+	font-size: 16px;
+	padding: 8px 0;
+	margin-right: 5px;
+	transition: .4s;
+}
+
+.new_game .bet:hover {	
+	background: rgba(255, 255, 255, 1);
+}
+
+.new_game .active_bet {
+	background: rgba(255, 255, 255, 1);	
+}
+
+.tooltip {
+	display: block;
+	color: #fff;
+	opacity: .6;
+	font-size: 14px;
+	text-align: center;
+	padding: 3px 0 20px 0;
+}
+
+.play {	
+	padding: 8px 0;
+	display: block;
+	margin: 0 auto;
+	box-shadow: 2px 2px 7px rgba(0, 0, 0, .4)
+	font-size: 18px;
+	background: #296391;
+	color: #fff;
+	border: none;
+	border-radius: 2px;
+	transition: .4s;	
+	width: 120px;
+	height: 40px;	
+	cursor: pointer;
+}
+
+.play:hover {
+	background: #75a7ce;
+}
+
+.current_bet {
+	display: block;
+	text-align: center;
+	padding-bottom: 20px;
+	color: #fff;
+}
+
+.result {
+	position: absolute;
+	font-size: 40px;	
+	color: #fff;
+	top: 200px;
+}
+
+.win, .lose, .draw {
+	position: absolute;	
+}
+
+.win {
+	color: green;
+	left: 340px;	
+}
+
+.lose {
+	color: red;
+	left: 330px;	
+}
+
+.draw {
+	color: yellow;
+	left: 330px;	
+}
+
+.disabled {
+	opacity: .3;
+}
+
+.empty {
+	display: none !important;
+}
+
+.rules {
+	position: absolute;
+	top: 0;
+	right: 0;	
+}
+
+.rules a {
+	color: #fff;
+	text-decoration: none;
+	margin-right: 20px;	
+}
+
+#rules, #contact {
+	background: #fff;
+	width: 1100px;
+	margin: 0 auto;
+	padding: 30px 100px;
+	position: relative;
+}
+
+#rules, #contact h1 {
+	margin-bottom: 30px;
+}
+
+.border_table {
+	position: absolute;
+    width: 900px;
+    margin-left: -70px;
+    margin-top: 30px;
+    height: 420px;
+}
