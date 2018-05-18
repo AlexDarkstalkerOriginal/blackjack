@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta http-equiv="Expires" content="Mon, 26 Jul 1997 05:00:00 GMT">
+	<meta http-equiv="Pragma" content="no-cache">
+	<title>BlackJack</title>	
+</head>    
+
+
+
+<body>	
+<div id="app">		
+	<div  class="wrapper">
+		<img src="img/fg-border-max.png" class="table" alt="">
+		<img src="img/border.png" class="border_table" alt="">
+		<img src="img/logo.png" alt="" class="logo">
+		<div class="dealer">
+			<div class="cards">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+
+				<div class="points">{{ dealer_result }}</div>
+			</div>
+		</div>
+		<div class="result">
+			<div v-show="win" class="win">Win</div>
+			<div v-show="lose" class="lose">Lose</div>
+			<div v-show="draw" class="draw">Draw</div>
+		</div>
+		<div class="player">
+			<div class="cards">
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				<div class="card"></div>
+				
+
+				<div class="points">{{player_result}}</div>
+			</div>
+		</div>
+		<div class="nav_buttons">
+			<div class="current_bet">Current bet: <span>{{current}}</span></div>
+			
+			<button v-bind:class="{ disabled: disabled_double}" v-bind:disabled="disabled_double" v-on:click="double(current)" class="double">Double down</button> 
+
+			<button v-bind:disabled="disabled_stand" v-bind:class="{ disabled: disabled_stand}" v-on:click="stand()" class="stand">Stand</button> 
+			
+			<button v-bind:disabled="disabled_hit" v-bind:class="{ disabled: disabled_hit}" v-on:click="hit()" class="hit">Hit</button>
+		</div>
+		<div class="new_game">
+			<h2>Play new game</h2>
+			<div class="bets_block">				
+				<button class="bet active_bet" value="0">0</button>
+				<button class="bet" value="0.01">0.01</button>
+				<button class="bet" value="0.05">0.05</button>			
+				<span class="tooltip">your bet</span>
+			</div>	
+			<button v-on:click="play()" class="play">Play</button>	
+		</div>
+		<div class="rules">
+			<a href="index.html" style="color: red">中国</a>
+			<a href="#contact" class="popup">Contact us</a>
+			<a href="#rules" class="popup">Rules</a>
+		</div>
+		<div id="rules" class="mfp-hide mfp-fade">
+			<h1>Rules</h1>
+			<p>
+				<b>THE PACK</b> <br>
+				The standard 52-card pack is used.
+				<br><br>
+				<b>OBJECT OF THE GAME</b>
+				<br>
+				Each participant attempts to beat the dealer by getting a count as close to 21 as possible, without going over 21. <br><br>
+				<b>CARD VALUES/SCORING</b>< br>
+				Face cards are 10, Ace is 11 and any other card is its pip value.
+				<br><br>
+				<b>Double down</b>
+				The player is allowed to increase the initial bet by up to 100% in exchange for committing to stand after receiving exactly one more card.
+			</p>
+		</div>
+		<div id="contact" class="mfp-hide mfp-fade">
+			<h1>Contact us</h1>
+			<a href="mailto:alexdarkstalkeroriginal@gmail.com">alexdarkstalkeroriginal@gmail.com</a>
+		</div>
+	</div>
+		
+	<div class="noExtension" style="display: none"> 
+		NOTE: Please install <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>  to use BlackJack Nebulas or try CTRL+F5
+	</div>
+	<div class="errNetwork" style="display: none">
+		NOTE: Sorry, you use incorrect net
+	</div>	
+</div>
+	<script src='lib/jquery-3.3.1.min.js'></script>
+	<link rel="stylesheet" href="lib/main.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
+    <script src='lib/nebPay.js'></script>    	
+    <script src="lib/common.js"></script>
+    <script src='lib/jquery.magnific-popup.js'></script> 	
+    <link rel="stylesheet" href="lib/magnific-popup.css">    
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">    
+    <script>
+	    $('.popup').magnificPopup({
+			type:'inline',
+			fixedContentPos: true, 
+			mainClass: 'mfp-fade',      
+			showCloseBtn: true,
+			closeOnBgClick: true
+		});		
+	</script>
+</body>
+</html>
