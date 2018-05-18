@@ -23,7 +23,7 @@
 	<div  class="wrapper">
 		<img src="img/fg-border-max.png" class="table" alt="">
 		<img src="img/border.png" class="border_table" alt="">
-		<img src="img/logo.png" alt="" class="logo">
+		<img src="img/logo.png" alt="" class="logo">		
 		<div class="dealer">
 			<div class="cards">
 				<div class="card"></div>
@@ -39,9 +39,9 @@
 			</div>
 		</div>
 		<div class="result">
-			<div v-show="win" class="win">Win</div>
-			<div v-show="lose" class="lose">Lose</div>
-			<div v-show="draw" class="draw">Draw</div>
+			<div v-show="win" class="win">赢得</div>
+			<div v-show="lose" class="lose">失去</div>
+			<div v-show="draw" class="draw">画</div>
 		</div>
 		<div class="player">
 			<div class="cards">
@@ -59,54 +59,57 @@
 			</div>
 		</div>
 		<div class="nav_buttons">
-			<div class="current_bet">Current bet: <span>{{current}}</span></div>
+			<div class="current_bet">目前下注: <span>{{current}}</span></div>
 			
-			<button v-bind:class="{ disabled: disabled_double}" v-bind:disabled="disabled_double" v-on:click="double(current)" class="double">Double down</button> 
+			<button v-bind:class="{ disabled: disabled_double}" v-bind:disabled="disabled_double" v-on:click="double(current)" class="double">双下</button> 
 
-			<button v-bind:disabled="disabled_stand" v-bind:class="{ disabled: disabled_stand}" v-on:click="stand()" class="stand">Stand</button> 
+			<button v-bind:disabled="disabled_stand" v-bind:class="{ disabled: disabled_stand}" v-on:click="stand()" class="stand">站</button> 
 			
-			<button v-bind:disabled="disabled_hit" v-bind:class="{ disabled: disabled_hit}" v-on:click="hit()" class="hit">Hit</button>
+			<button v-bind:disabled="disabled_hit" v-bind:class="{ disabled: disabled_hit}" v-on:click="hit()" class="hit">击中</button>
 		</div>
 		<div class="new_game">
-			<h2>Play new game</h2>
+			<h2>玩新游戏</h2>
 			<div class="bets_block">				
 				<button class="bet active_bet" value="0.01">0.01</button>
 				<button class="bet" value="0.025">0.025</button>
 				<button class="bet" value="0.05">0.05</button>			
-				<span class="tooltip">your bet</span>
+				<span class="tooltip">你的赌注</span>
 			</div>	
-			<button v-on:click="play()" class="play">Play</button>	
+			<button v-on:click="play()" class="play">玩</button>	
 		</div>
 		<div class="rules">
-			<a href="#contact" class="popup">Contact us</a>
-			<a href="#rules" class="popup">Rules</a>
+			<a href="en.html" style="color: red">EN</a>
+			<a href="#contact" class="popup">联系我们</a>
+			<a href="#rules" class="popup">规则</a>
 		</div>
 		<div id="rules" class="mfp-hide mfp-fade">
-			<h1>Rules</h1>
+			<h1>规则</h1>
 			<p>
-				<b>THE PACK</b> <br>
-				The standard 52-card pack is used.
+				<b>包裹</b> <br>
+				使用标准的52卡包。
 				<br><br>
-				<b>OBJECT OF THE GAME</b>
+				<b>游戏的目标</b>
 				<br>
-				Each participant attempts to beat the dealer by getting a count as close to 21 as possible, without going over 21. <br><br>
-				<b>CARD VALUES/SCORING</b><br>
-				Face cards are 10, Ace is 11 and any other card is its pip value.
+				每位参与者都试图通过尽可能接近21的计数来击败经销商，而不会超过21<br><br>
+				<b>卡片价值/评分</b>< br>
+				面牌是10，Ace是11，其他牌是它的点值 <br><br>
+				<b>双击</b>
+				玩家被允许增加最初的赌注高达100％，以换取承诺在收到正好一张卡之后的立场
 			</p>
 		</div>
 		<div id="contact" class="mfp-hide mfp-fade">
-			<h1>Contact us</h1>
+			<h1>联系我们</h1>
 			<a href="mailto:alexdarkstalkeroriginal@gmail.com">alexdarkstalkeroriginal@gmail.com</a>
 		</div>
 	</div>
-		
-	<div class="noExtension" style="display: none"> 
-		NOTE: Please install <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>  to use NebSafe or try CTRL+F5
-	</div>
-	<div class="errNetwork" style="display: none">
-		NOTE: Sorry, you use incorrect net
-	</div>	
+			
 </div>
+<div class="noExtension" style="display: none"> 
+		注意：请安装 <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>  使用21点星云或尝试CTRL + F5
+</div>
+<div class="errNetwork" style="display: none">
+	注意：对不起，您使用不正确的网络
+</div>	
 	<script src='lib/jquery-3.3.1.min.js'></script>
 	<link rel="stylesheet" href="lib/main.css">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
